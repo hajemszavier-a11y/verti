@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VertiBand — Guided relief from vertigo, in the comfort of home</title>
+    <meta name="description" content="VertiBand uses precision motion sensing and real-time audio to help you perform the Epley maneuver correctly — at home, without a clinic visit.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-dark: #0a0a0a;
+            --bg-darker: #050505;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --accent-teal: #2DD4BF;
+            --accent-blue: #4A90D9;
+            --border-subtle: #1f1f1f;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .fade-in-delay-1 {
+            animation-delay: 0.1s;
+        }
+
+        .fade-in-delay-2 {
+            animation-delay: 0.2s;
+        }
+
+        .fade-in-delay-3 {
+            animation-delay: 0.3s;
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            margin-bottom: 1.5rem;
+        }
+
+        h3 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: clamp(1rem, 2vw, 1.125rem);
+            line-height: 1.7;
+            color: var(--text-secondary);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 6rem 0;
+            min-height: auto;
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 4rem 0;
+            }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--accent-teal);
+        }
+
+        /* Hero Section */
+        #hero {
+            padding-top: 12rem;
+            padding-bottom: 8rem;
+            text-align: center;
+            background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-darker) 100%);
+        }
+
+        #hero h1 {
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
+        }
+
+        #hero .subheadline {
+            font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            line-height: 1.6;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            margin: 3rem auto;
+            padding-bottom: 50.625%;
+            height: 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--bg-dark);
+            background: var(--accent-teal);
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 2rem;
+        }
+
+        .cta-button:hover {
+            background: #24b5a0;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(45, 212, 191, 0.3);
+        }
+
+        /* Problem Section */
+        #problem {
+            background: var(--bg-darker);
+        }
+
+        #problem h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 2rem;
+            background: var(--bg-dark);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            border-color: var(--accent-teal);
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 800;
+            color: var(--accent-teal);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .problem-description {
+            max-width: 900px;
+            margin: 3rem auto 0;
+            text-align: center;
+            font-size: 1.125rem;
+            line-height: 1.8;
+        }
+
+        /* Solution Section */
+        #solution h2, #solution .subheadline {
+            text-align: center;
+        }
+
+        #solution .subheadline {
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            font-size: 1.25rem;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .feature-card {
+            padding: 2.5rem;
+            background: var(--bg-darker);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            border-color: var(--accent-blue);
+            transform: translateY(-5px);
+        }
+
+        .feature-card h3 {
+            color: var(--accent-teal);
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .product-image-placeholder {
+            width: 100%;
+            max-width: 800px;
+            height: 500px;
+            margin: 3rem auto;
+            background: var(--bg-darker);
+            border: 2px dashed var(--border-subtle);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        /* How It Works Section */
+        #how-it-works {
+            background: var(--bg-darker);
+        }
+
+        #how-it-works h2 {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .step-card {
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--accent-blue);
+            color: var(--bg-dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 1.5rem;
+        }
+
+        .step-card h3 {
+            margin-bottom: 1rem;
+        }
+
+        .diagram-placeholder {
+            width: 100%;
+            max-width: 1000px;
+            height: 400px;
+            margin: 3rem auto;
+            background: var(--bg-dark);
+            border: 2px dashed var(--border-subtle);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        /* Validation Section */
+        #validation h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .validation-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .validation-stat {
+            text-align: center;
+            padding: 2rem;
+            background: var(--bg-darker);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+        }
+
+        .validation-stat .stat-number {
+            color: var(--accent-blue);
+        }
+
+        .testimonial {
+            max-width: 800px;
+            margin: 3rem auto;
+            padding: 2.5rem;
+            background: var(--bg-darker);
+            border-left: 4px solid var(--accent-teal);
+            border-radius: 8px;
+            font-style: italic;
+            font-size: 1.25rem;
+            line-height: 1.8;
+        }
+
+        /* Comparison Section */
+        #comparison {
+            background: var(--bg-darker);
+        }
+
+        #comparison h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .comparison-table-wrapper {
+            overflow-x: auto;
+            margin: 3rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--bg-dark);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        th {
+            background: var(--bg-darker);
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        td {
+            color: var(--text-secondary);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        td:first-child {
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        tr:first-child td:nth-child(2) {
+            color: var(--accent-teal);
+            font-weight: 600;
+        }
+
+        .checkmark {
+            color: var(--accent-teal);
+            font-size: 1.25rem;
+        }
+
+        .crossmark {
+            color: #666;
+            font-size: 1.25rem;
+        }
+
+        /* Team Section */
+        #team h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .origin-story {
+            max-width: 900px;
+            margin: 0 auto 4rem;
+            text-align: center;
+            font-size: 1.125rem;
+            line-height: 1.8;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin: 3rem 0;
+        }
+
+        .team-card {
+            background: var(--bg-darker);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .team-card:hover {
+            border-color: var(--accent-teal);
+            transform: translateY(-5px);
+        }
+
+        .team-photo-placeholder {
+            width: 100%;
+            height: 300px;
+            background: var(--bg-dark);
+            border: 2px dashed var(--border-subtle);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .team-card h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .team-role {
+            color: var(--accent-teal);
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .team-card ul {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .team-card li {
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .team-card li:before {
+            content: "•";
+            color: var(--accent-teal);
+            position: absolute;
+            left: 0;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-darker);
+            border-top: 1px solid var(--border-subtle);
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo span {
+            color: var(--accent-teal);
+        }
+
+        .contact-info {
+            margin-top: 1rem;
+        }
+
+        .contact-info a {
+            color: var(--accent-teal);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            color: var(--text-primary);
+        }
+
+        .disclaimer {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-top: 1rem;
+            padding: 1.5rem;
+            background: var(--bg-dark);
+            border-radius: 8px;
+            border: 1px solid var(--border-subtle);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: var(--bg-dark);
+            border: 1px solid var(--border-subtle);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            border-color: var(--accent-teal);
+            color: var(--accent-teal);
+        }
+
+        .copyright {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav .container {
+                padding: 1rem;
+            }
+
+            #hero {
+                padding-top: 8rem;
+            }
+
+            .stats-grid,
+            .feature-grid,
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+
+            table {
+                font-size: 0.875rem;
+            }
+
+            th, td {
+                padding: 1rem 0.75rem;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Scroll Observer */
+        .observe-fade {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .observe-fade.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="#hero" class="logo">Verti<span>Band</span></a>
+            <div class="contact-info">
+                <a href="mailto:team@vertiband.com">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="container">
+            <h1 class="fade-in">Vertigo treatment, guided by sound</h1>
+            <p class="subheadline fade-in fade-in-delay-1">VertiBand uses precision motion sensing and real-time audio to help you perform the Epley maneuver correctly — at home, without a clinic visit.</p>
+            <div class="video-wrapper fade-in fade-in-delay-2">
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <a href="#problem" class="cta-button fade-in fade-in-delay-3">Learn More</a>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section id="problem">
+        <div class="container">
+            <h2 class="observe-fade">15 million Americans suffer from BPPV</h2>
+            <div class="stats-grid">
+                <div class="stat-card observe-fade">
+                    <span class="stat-number">2.4%</span>
+                    <span class="stat-label">of the population affected</span>
+                </div>
+                <div class="stat-card observe-fade">
+                    <span class="stat-number">$150-300</span>
+                    <span class="stat-label">per specialist visit</span>
+                </div>
+                <div class="stat-card observe-fade">
+                    <span class="stat-number">4-6 weeks</span>
+                    <span class="stat-label">wait times</span>
+                </div>
+                <div class="stat-card observe-fade">
+                    <span class="stat-number">~50%</span>
+                    <span class="stat-label">home treatment failure rate</span>
+                </div>
+            </div>
+            <p class="problem-description observe-fade">BPPV causes intense vertigo when calcium crystals shift in your inner ear. The Epley maneuver works — but only if you hit the right angles. Without guidance, most people fail. Incorrect attempts can make symptoms worse.</p>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section id="solution">
+        <div class="container">
+            <h2 class="observe-fade">Clinical-grade guidance. Consumer-friendly device.</h2>
+            <p class="subheadline observe-fade">VertiBand tells you exactly when to move, how far to turn, and confirms when you're in the right position.</p>
+            <div class="feature-grid">
+                <div class="feature-card observe-fade">
+                    <h3>Precision Sensing</h3>
+                    <p>Medical-grade IMU tracks head orientation within ±2.8°</p>
+                </div>
+                <div class="feature-card observe-fade">
+                    <h3>Audio Guidance</h3>
+                    <p>Hands-free voice instructions — no screens to watch during vertigo</p>
+                </div>
+                <div class="feature-card observe-fade">
+                    <h3>Real-Time Corrections</h3>
+                    <p>"Turn a little more to the right... perfect, hold this position"</p>
+                </div>
+            </div>
+            <div class="product-image-placeholder observe-fade">[Product Image]</div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works">
+        <div class="container">
+            <h2 class="observe-fade">Four steps to relief</h2>
+            <div class="steps-grid">
+                <div class="step-card observe-fade">
+                    <div class="step-number">1</div>
+                    <h3>Calibrate</h3>
+                    <p>Put on the headband, establish your neutral position</p>
+                </div>
+                <div class="step-card observe-fade">
+                    <div class="step-number">2</div>
+                    <h3>Follow</h3>
+                    <p>Audio guides you through each of the 5 Epley positions</p>
+                </div>
+                <div class="step-card observe-fade">
+                    <div class="step-number">3</div>
+                    <h3>Correct</h3>
+                    <p>Real-time feedback if you drift off target</p>
+                </div>
+                <div class="step-card observe-fade">
+                    <div class="step-number">4</div>
+                    <h3>Complete</h3>
+                    <p>Session logged, vertigo addressed</p>
+                </div>
+            </div>
+            <div class="diagram-placeholder observe-fade">[Diagram]</div>
+        </div>
+    </section>
+
+    <!-- Validation Section -->
+    <section id="validation">
+        <div class="container">
+            <h2 class="observe-fade">Tested. Validated. Proven.</h2>
+            <div class="validation-stats">
+                <div class="validation-stat observe-fade">
+                    <span class="stat-number">±2.8°</span>
+                    <span class="stat-label">position accuracy</span>
+                </div>
+                <div class="validation-stat observe-fade">
+                    <span class="stat-number">94%</span>
+                    <span class="stat-label">transition detection</span>
+                </div>
+                <div class="validation-stat observe-fade">
+                    <span class="stat-number">91%</span>
+                    <span class="stat-label">error correction in simulated trials</span>
+                </div>
+            </div>
+            <blockquote class="testimonial observe-fade">
+                "I never knew if I was doing it right before. Now I actually know when I'm in the right position." — Early tester
+            </blockquote>
+        </div>
+    </section>
+
+    <!-- Comparison Section -->
+    <section id="comparison">
+        <div class="container">
+            <h2 class="observe-fade">How VertiBand compares</h2>
+            <div class="comparison-table-wrapper observe-fade">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>VertiBand</th>
+                            <th>DizzyFIX</th>
+                            <th>Phone Apps</th>
+                            <th>Clinical VR</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Price</td>
+                            <td>$219</td>
+                            <td>$149</td>
+                            <td>$0-10</td>
+                            <td>$8,000+</td>
+                        </tr>
+                        <tr>
+                            <td>Real-time feedback</td>
+                            <td><span class="checkmark">✓</span></td>
+                            <td><span class="crossmark">✗</span></td>
+                            <td><span class="crossmark">✗</span></td>
+                            <td><span class="checkmark">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td>Hands-free</td>
+                            <td><span class="checkmark">✓</span></td>
+                            <td><span class="crossmark">✗</span></td>
+                            <td><span class="crossmark">✗</span></td>
+                            <td><span class="checkmark">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td>Home use</td>
+                            <td><span class="checkmark">✓</span></td>
+                            <td><span class="checkmark">✓</span></td>
+                            <td><span class="checkmark">✓</span></td>
+                            <td><span class="crossmark">✗</span></td>
+                        </tr>
+                        <tr>
+                            <td>Medical-grade accuracy</td>
+                            <td><span class="checkmark">✓</span></td>
+                            <td><span class="crossmark">✗</span></td>
+                            <td><span class="crossmark">✗</span></td>
+                            <td><span class="checkmark">✓</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team">
+        <div class="container">
+            <h2 class="observe-fade">Built by people who understand the problem</h2>
+            <p class="origin-story observe-fade">When Tanmay's mother was diagnosed with BPPV, he saw how broken the system was — expensive specialist visits, long drives, weeks-long wait times. When he brought the problem to Zavier, the answer was simple: forget the clinic, let's build something that works at home.</p>
+            <div class="team-grid">
+                <div class="team-card observe-fade">
+                    <div class="team-photo-placeholder">[Photo]</div>
+                    <h3>Tanmay Vasudeva</h3>
+                    <span class="team-role">Co-Founder, Research & Business Lead</span>
+                    <ul>
+                        <li>Texas Virtual Academy at Hallsville</li>
+                        <li>Author, <em>What the Pain Left Behind</em></li>
+                        <li>Founder, CareForBrains (501(c)(3) — 16 chapters, 850+ volunteers)</li>
+                        <li>President, HOSA</li>
+                        <li>Co-author: "Meta-Analysis of the Epley Maneuver's Effect on DHI Scores" (Curieux Academic Journal)</li>
+                    </ul>
+                </div>
+                <div class="team-card observe-fade">
+                    <div class="team-photo-placeholder">[Photo]</div>
+                    <h3>Zavier Hayat</h3>
+                    <span class="team-role">Co-Founder, Hardware Lead</span>
+                    <ul>
+                        <li>Clements High School, Sugar Land, TX</li>
+                        <li>Director of STEM Exploration, CareForBrains</li>
+                        <li>Eagle Scout</li>
+                        <li>Co-author: "Meta-Analysis of the Epley Maneuver's Effect on DHI Scores" (Curieux Academic Journal)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <div class="footer-logo">Verti<span>Band</span></div>
+                    <p style="color: var(--text-secondary); margin-top: 1rem;">Guided relief from vertigo, in the comfort of home</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Twitter">𝕏</a>
+                        <a href="#" aria-label="LinkedIn">in</a>
+                        <a href="#" aria-label="Email">@</a>
+                    </div>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 1rem;">Contact</h4>
+                    <div class="contact-info">
+                        <a href="mailto:team@vertiband.com">team@vertiband.com</a>
+                    </div>
+                </div>
+            </div>
+            <div class="disclaimer">
+                <strong>Disclaimer:</strong> VertiBand is an assistive guidance tool and does not replace medical diagnosis or clinician instruction. Always consult with a healthcare professional for proper diagnosis and treatment of BPPV.
+            </div>
+            <div class="copyright">
+                © 2025 VertiBand. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll Animation Script -->
+    <script>
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all elements with observe-fade class
+        document.querySelectorAll('.observe-fade').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
