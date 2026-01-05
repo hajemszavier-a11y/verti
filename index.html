@@ -236,7 +236,16 @@
 
         .stat {
             text-align: center;
-            padding: 1.5rem 1rem;
+            padding: 2rem 1.5rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            transition: all 0.2s;
+        }
+
+        .stat:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
         }
 
         .stat-value {
@@ -248,11 +257,11 @@
         }
 
         .stat-label {
-            font-size: 0.8125rem;
+            font-size: 0.75rem;
             color: var(--text-secondary);
-            font-weight: 500;
+            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.08em;
         }
 
         /* Problem */
@@ -692,19 +701,19 @@
             <div class="stats-grid">
                 <div class="stat">
                     <div class="stat-value">2.4%</div>
-                    <div class="stat-label">of population</div>
+                    <div class="stat-label">Population Affected</div>
                 </div>
                 <div class="stat">
                     <div class="stat-value">$150-300</div>
-                    <div class="stat-label">specialist visit</div>
+                    <div class="stat-label">Specialist Visit</div>
                 </div>
                 <div class="stat">
-                    <div class="stat-value">4-6 wks</div>
-                    <div class="stat-label">wait time</div>
+                    <div class="stat-value">4-6 weeks</div>
+                    <div class="stat-label">Wait Time</div>
                 </div>
                 <div class="stat">
                     <div class="stat-value">~50%</div>
-                    <div class="stat-label">failure rate</div>
+                    <div class="stat-label">Failure Rate</div>
                 </div>
             </div>
         </div>
