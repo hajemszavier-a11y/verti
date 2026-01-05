@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VertiBand - Guided relief from vertigo</title>
-    <meta name="description" content="Precision motion sensing and real-time audio guidance for the Epley maneuver at home.">
+    <title>VertiBand - Relief from vertigo</title>
+    <meta name="description" content="Medical-grade guidance for the Epley maneuver at home.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -16,18 +16,14 @@
         }
 
         :root {
-            --bg-primary: #0B0B0F;
-            --bg-secondary: #13131A;
-            --bg-card: #1A1A24;
-            --text-primary: #FFFFFF;
-            --text-secondary: #A8A8B3;
-            --text-tertiary: #6E6E7A;
-            --accent-purple: #A855F7;
-            --accent-blue: #3B82F6;
-            --accent-teal: #14B8A6;
-            --gradient-main: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --gradient-purple: linear-gradient(135deg, #a855f7 0%, #7c3aed 100%);
-            --gradient-accent: linear-gradient(135deg, #06b6d4 0%, #3b82f6 50%, #8b5cf6 100%);
+            --bg: #FAFBFC;
+            --surface: #FFFFFF;
+            --text-primary: #1A1D29;
+            --text-secondary: #5C6171;
+            --text-tertiary: #8A8F9E;
+            --accent: #3B82F6;
+            --accent-light: #60A5FA;
+            --border: #E5E7EB;
         }
 
         html {
@@ -36,73 +32,77 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg-primary);
+            background: var(--bg);
             color: var(--text-primary);
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
         }
 
         h1 {
-            font-size: clamp(2.25rem, 5vw, 3.75rem);
-            font-weight: 700;
+            font-size: clamp(2rem, 4.5vw, 3.5rem);
+            font-weight: 600;
             line-height: 1.1;
             letter-spacing: -0.02em;
+            color: var(--text-primary);
         }
 
         h2 {
-            font-size: clamp(1.75rem, 4vw, 2.75rem);
-            font-weight: 700;
+            font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+            font-weight: 600;
             line-height: 1.2;
             letter-spacing: -0.015em;
+            color: var(--text-primary);
         }
 
         h3 {
-            font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+            font-size: clamp(1.125rem, 2vw, 1.375rem);
             font-weight: 600;
             line-height: 1.3;
+            color: var(--text-primary);
         }
 
         p {
-            font-size: clamp(0.9375rem, 1.5vw, 1.0625rem);
+            font-size: clamp(0.9375rem, 1.25vw, 1.0625rem);
             line-height: 1.7;
             color: var(--text-secondary);
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1140px;
             margin: 0 auto;
-            padding: 0 clamp(1.5rem, 4vw, 3rem);
+            padding: 0 clamp(1.5rem, 4vw, 2.5rem);
         }
 
         section {
             padding: clamp(3.5rem, 8vh, 6rem) 0;
         }
 
-        /* Navigation */
+        /* Nav */
         nav {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             z-index: 1000;
-            background: rgba(11, 11, 15, 0.8);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
         }
 
         nav .container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-top: 1.25rem;
-            padding-bottom: 1.25rem;
+            padding-top: 1.125rem;
+            padding-bottom: 1.125rem;
         }
 
         .logo {
-            font-size: 1.25rem;
-            font-weight: 700;
+            font-size: 1.125rem;
+            font-weight: 600;
             color: var(--text-primary);
             text-decoration: none;
+            letter-spacing: -0.01em;
         }
 
         .nav-contact {
@@ -110,7 +110,7 @@
             text-decoration: none;
             font-size: 0.9375rem;
             font-weight: 500;
-            transition: color 0.3s;
+            transition: color 0.2s;
         }
 
         .nav-contact:hover {
@@ -119,355 +119,269 @@
 
         /* Hero */
         #hero {
-            min-height: 100vh;
+            min-height: 90vh;
             display: flex;
             align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            background: radial-gradient(ellipse at top, rgba(139, 92, 246, 0.15) 0%, transparent 60%),
-                        radial-gradient(ellipse at bottom right, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
-                        var(--bg-primary);
+            padding-top: 5rem;
         }
 
-        #hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(168, 85, 247, 0.2) 0%, transparent 70%);
-            filter: blur(100px);
-            animation: float 25s ease-in-out infinite;
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
         }
 
-        #hero::after {
-            content: '';
-            position: absolute;
-            bottom: -40%;
-            left: -15%;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
-            filter: blur(100px);
-            animation: float 30s ease-in-out infinite reverse;
+        @media (max-width: 968px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
         }
 
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0); }
-            50% { transform: translate(-30px, 30px); }
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 900px;
-            padding-top: 4rem;
-        }
-
-        .hero-tagline {
-            font-size: 0.875rem;
-            color: var(--accent-purple);
-            font-weight: 600;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
+        .hero-content h1 {
             margin-bottom: 1.25rem;
         }
 
-        .cta-primary {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.625rem;
-            padding: 0.875rem 2rem;
-            font-size: 0.9375rem;
-            font-weight: 600;
-            color: white;
-            background: var(--gradient-purple);
-            border: none;
-            border-radius: 50px;
-            text-decoration: none;
-            transition: all 0.3s;
-            margin-top: 1.75rem;
-            box-shadow: 0 10px 30px rgba(168, 85, 247, 0.3);
+        .hero-content p {
+            font-size: clamp(1.0625rem, 1.5vw, 1.1875rem);
+            margin-bottom: 2rem;
+            color: var(--text-secondary);
+            max-width: 520px;
         }
 
-        .cta-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 40px rgba(168, 85, 247, 0.4);
+        .cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.875rem 1.75rem;
+            font-size: 0.9375rem;
+            font-weight: 500;
+            color: white;
+            background: var(--accent);
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .cta:hover {
+            background: var(--accent-light);
+            transform: translateY(-1px);
         }
 
         .hero-visual {
             width: 100%;
-            max-width: 850px;
-            margin: 2.5rem auto 0;
-            aspect-ratio: 16 / 9;
-            background: var(--bg-card);
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .hero-visual iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        /* Problem Section */
-        #problem {
-            background: var(--bg-secondary);
-        }
-
-        #problem h2 {
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto 2.5rem;
-        }
-
-        .stats-display {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 1.5rem;
-            margin: 3rem 0;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 2rem 1.5rem;
-            background: var(--bg-card);
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.3s;
-        }
-
-        .stat-item:hover {
-            transform: translateY(-4px);
-            border-color: rgba(168, 85, 247, 0.3);
-            box-shadow: 0 10px 30px rgba(168, 85, 247, 0.15);
-        }
-
-        .stat-value {
-            font-size: clamp(2.25rem, 4.5vw, 2.75rem);
-            font-weight: 700;
-            background: var(--gradient-accent);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1;
-            margin-bottom: 0.625rem;
-        }
-
-        .stat-description {
-            font-size: 0.9375rem;
-            color: var(--text-secondary);
-        }
-
-        .problem-narrative {
-            max-width: 700px;
-            margin: 3rem auto 0;
-            text-align: center;
-        }
-
-        .problem-narrative p {
-            font-size: clamp(1rem, 1.75vw, 1.125rem);
-            line-height: 1.7;
-        }
-
-        /* Solution */
-        #solution {
-            background: var(--bg-primary);
-        }
-
-        .solution-header {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto 3rem;
-        }
-
-        .features-showcase {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin: 3rem 0;
-        }
-
-        .feature-item {
-            padding: 2.5rem 2rem;
-            background: var(--bg-card);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 16px;
-            transition: all 0.3s;
-        }
-
-        .feature-item:hover {
-            transform: translateY(-4px);
-            border-color: rgba(168, 85, 247, 0.3);
-            box-shadow: 0 10px 30px rgba(168, 85, 247, 0.15);
-        }
-
-        .feature-item h3 {
-            margin-bottom: 0.75rem;
-            background: var(--gradient-accent);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .feature-item p {
-            font-size: 0.9375rem;
-            line-height: 1.6;
-        }
-
-        .product-showcase {
-            width: 100%;
-            max-width: 900px;
-            height: 500px;
-            margin: 4rem auto;
-            background: var(--bg-card);
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #F0F4FF 0%, #E8F0FE 100%);
             border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
         }
 
-        .product-label {
-            font-size: 1.25rem;
-            font-weight: 600;
+        .hero-visual::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 80%;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .product-placeholder {
+            position: relative;
+            z-index: 1;
+            font-size: 1rem;
+            font-weight: 500;
             color: var(--text-tertiary);
         }
 
-        /* How It Works - CENTERED */
-        #how-it-works {
-            background: var(--bg-secondary);
+        /* Stats */
+        #stats {
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
         }
 
-        .process-header {
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+        }
+
+        .stat {
             text-align: center;
-            max-width: 700px;
-            margin: 0 auto 4rem;
         }
 
-        .process-steps {
+        .stat-value {
+            font-size: clamp(1.875rem, 3.5vw, 2.25rem);
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--text-tertiary);
+            font-weight: 500;
+        }
+
+        /* Problem */
+        #problem {
+            background: var(--bg);
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 680px;
+            margin: 0 auto 3rem;
+        }
+
+        .section-header h2 {
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: clamp(1rem, 1.5vw, 1.125rem);
+        }
+
+        /* Features */
+        #features {
+            background: var(--surface);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .feature {
+            padding: 2rem 1.5rem;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            transition: all 0.2s;
+        }
+
+        .feature:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .feature h3 {
+            margin-bottom: 0.75rem;
+            color: var(--accent);
+        }
+
+        .feature p {
+            font-size: 0.9375rem;
+        }
+
+        /* How It Works */
+        #how-it-works {
+            background: var(--bg);
+        }
+
+        .steps {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 2rem;
-            max-width: 1000px;
-            margin: 0 auto;
+            margin-top: 3.5rem;
         }
 
         @media (max-width: 968px) {
-            .process-steps {
+            .steps {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
 
         @media (max-width: 580px) {
-            .process-steps {
+            .steps {
                 grid-template-columns: 1fr;
             }
         }
 
-        .process-step {
+        .step {
             text-align: center;
         }
 
-        .step-icon {
-            width: 80px;
-            height: 80px;
+        .step-number {
+            width: 64px;
+            height: 64px;
             margin: 0 auto 1.25rem;
-            background: var(--gradient-purple);
+            background: var(--accent);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.75rem;
-            font-weight: 700;
-            color: white;
-            box-shadow: 0 10px 30px rgba(168, 85, 247, 0.3);
-            transition: all 0.3s;
-        }
-
-        .process-step:hover .step-icon {
-            transform: scale(1.05);
-            box-shadow: 0 15px 40px rgba(168, 85, 247, 0.4);
-        }
-
-        .process-step h3 {
-            margin-bottom: 0.625rem;
-            font-size: 1.25rem;
-        }
-
-        .process-step p {
-            font-size: 0.875rem;
-            line-height: 1.5;
-        }
-
-        .process-visual {
-            width: 100%;
-            max-width: 1000px;
-            height: 400px;
-            margin: 4rem auto 0;
-            background: var(--bg-card);
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .process-visual span {
-            font-size: 1.25rem;
+            font-size: 1.5rem;
             font-weight: 600;
-            color: var(--text-tertiary);
+            color: white;
+        }
+
+        .step h3 {
+            margin-bottom: 0.625rem;
+            font-size: 1.125rem;
+        }
+
+        .step p {
+            font-size: 0.875rem;
         }
 
         /* Validation */
         #validation {
-            background: var(--bg-primary);
+            background: var(--surface);
         }
 
-        .validation-header {
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto 3rem;
-        }
-
-        .validation-metrics {
+        .metrics {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 1.5rem;
-            margin: 3rem 0;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3.5rem;
         }
 
-        .metric-card {
+        @media (max-width: 768px) {
+            .metrics {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .metric {
             text-align: center;
             padding: 2.5rem 2rem;
-            background: var(--bg-card);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 16px;
-            transition: all 0.3s;
-        }
-
-        .metric-card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(168, 85, 247, 0.3);
-            box-shadow: 0 10px 30px rgba(168, 85, 247, 0.15);
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
         }
 
         .metric-value {
-            font-size: clamp(2.5rem, 5vw, 3.25rem);
-            font-weight: 700;
-            background: var(--gradient-accent);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1;
+            font-size: clamp(2.25rem, 4vw, 2.75rem);
+            font-weight: 600;
+            color: var(--accent);
             margin-bottom: 0.75rem;
+            line-height: 1;
         }
 
         .metric-label {
@@ -475,167 +389,142 @@
             color: var(--text-secondary);
         }
 
-        .quote-block {
-            max-width: 750px;
-            margin: 4rem auto 0;
-            padding: 2.5rem 2rem;
-            background: var(--bg-card);
-            border-left: 3px solid var(--accent-purple);
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+        .quote {
+            max-width: 680px;
+            margin: 3.5rem auto 0;
+            padding: 2.5rem;
+            background: var(--bg);
+            border-left: 3px solid var(--accent);
+            border-radius: 8px;
         }
 
-        .quote-block p {
-            font-size: clamp(1.0625rem, 1.75vw, 1.25rem);
+        .quote p {
+            font-size: clamp(1.0625rem, 1.5vw, 1.1875rem);
             font-style: italic;
-            line-height: 1.6;
             color: var(--text-primary);
+            margin-bottom: 0.75rem;
         }
 
         .quote-author {
-            margin-top: 1rem;
             font-size: 0.9375rem;
             color: var(--text-tertiary);
-            font-style: normal;
         }
 
         /* Comparison */
         #comparison {
-            background: var(--bg-secondary);
+            background: var(--bg);
         }
 
-        .comparison-header {
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto 3rem;
-        }
-
-        .comparison-container {
-            max-width: 1000px;
-            margin: 0 auto;
+        .table-wrapper {
             overflow-x: auto;
+            margin-top: 3rem;
         }
 
-        .comparison-table {
+        table {
             width: 100%;
-            border-collapse: separate;
-            border-spacing: 0;
-            background: var(--bg-card);
+            border-collapse: collapse;
+            background: var(--surface);
+            border: 1px solid var(--border);
             border-radius: 12px;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .comparison-table th {
-            padding: 1.5rem 1rem;
-            text-align: left;
-            font-weight: 600;
-            font-size: 0.9375rem;
-            background: rgba(168, 85, 247, 0.05);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .comparison-table th:nth-child(2) {
-            color: var(--accent-purple);
-        }
-
-        .comparison-table td {
+        th, td {
             padding: 1.25rem 1rem;
+            text-align: left;
             font-size: 0.9375rem;
-            color: var(--text-secondary);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
         }
 
-        .comparison-table tr:last-child td {
+        th {
+            background: var(--bg);
+            font-weight: 600;
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border);
+        }
+
+        td {
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--border);
+        }
+
+        tr:last-child td {
             border-bottom: none;
         }
 
-        .comparison-table td:first-child {
+        td:first-child {
             font-weight: 500;
             color: var(--text-primary);
         }
 
-        .comparison-table td:nth-child(2) {
-            color: var(--text-primary);
+        th:nth-child(2), td:nth-child(2) {
+            color: var(--accent);
+            font-weight: 500;
         }
 
-        .check-icon {
-            color: var(--accent-teal);
-            font-size: 1.25rem;
+        .check {
+            color: #10B981;
+            font-size: 1.125rem;
         }
 
-        .cross-icon {
-            color: #444;
-            font-size: 1.25rem;
+        .cross {
+            color: #D1D5DB;
+            font-size: 1.125rem;
         }
 
         /* Team */
         #team {
-            background: var(--bg-primary);
+            background: var(--surface);
         }
 
-        .team-header {
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto 1.5rem;
-        }
-
-        .team-story {
-            max-width: 800px;
-            margin: 0 auto 4rem;
+        .team-intro {
+            max-width: 780px;
+            margin: 0 auto 3.5rem;
             text-align: center;
         }
 
-        .team-story p {
-            font-size: clamp(1rem, 1.75vw, 1.125rem);
-            line-height: 1.7;
-        }
-
-        .team-members {
+        .team-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-top: 4rem;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
         }
 
-        .team-member {
-            background: var(--bg-card);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 16px;
+        @media (max-width: 768px) {
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .member {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
             padding: 2rem;
-            transition: all 0.3s;
-        }
-
-        .team-member:hover {
-            transform: translateY(-4px);
-            border-color: rgba(168, 85, 247, 0.3);
-            box-shadow: 0 10px 30px rgba(168, 85, 247, 0.15);
         }
 
         .member-photo {
             width: 100%;
-            height: 280px;
-            background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(59, 130, 246, 0.1));
-            border-radius: 12px;
+            height: 260px;
+            background: linear-gradient(135deg, #F0F4FF, #E8F0FE);
+            border-radius: 8px;
             margin-bottom: 1.5rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.125rem;
+            font-size: 1rem;
             color: var(--text-tertiary);
-            font-weight: 600;
+            font-weight: 500;
         }
 
         .member-name {
-            font-size: 1.375rem;
-            font-weight: 700;
+            font-size: 1.25rem;
+            font-weight: 600;
             margin-bottom: 0.375rem;
         }
 
-        .member-title {
-            color: var(--accent-purple);
+        .member-role {
+            color: var(--accent);
             font-size: 0.9375rem;
-            font-weight: 600;
+            font-weight: 500;
             margin-bottom: 1.5rem;
         }
 
@@ -644,11 +533,10 @@
         }
 
         .member-bio li {
-            padding: 0.5rem 0;
+            padding: 0.375rem 0;
             padding-left: 1.25rem;
             position: relative;
             font-size: 0.875rem;
-            line-height: 1.5;
             color: var(--text-secondary);
         }
 
@@ -656,59 +544,65 @@
             content: '•';
             position: absolute;
             left: 0;
-            color: var(--accent-purple);
+            color: var(--accent);
         }
 
         /* Footer */
         footer {
-            background: var(--bg-secondary);
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 3.5rem 0 2rem;
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            padding: 3rem 0 2rem;
         }
 
         .footer-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 2.5rem;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
             margin-bottom: 2.5rem;
         }
 
+        @media (max-width: 580px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         .footer-brand h3 {
-            font-size: 1.375rem;
-            font-weight: 700;
+            font-size: 1.25rem;
+            font-weight: 600;
             margin-bottom: 0.625rem;
         }
 
         .footer-tagline {
             color: var(--text-secondary);
-            margin-bottom: 1.25rem;
+            margin-bottom: 1rem;
             font-size: 0.9375rem;
         }
 
-        .social-icons {
+        .socials {
             display: flex;
             gap: 0.625rem;
         }
 
-        .social-icon {
-            width: 40px;
-            height: 40px;
-            background: var(--bg-card);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+        .social {
+            width: 36px;
+            height: 36px;
+            background: var(--bg);
+            border: 1px solid var(--border);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--text-secondary);
             text-decoration: none;
-            transition: all 0.3s;
-            font-size: 1.0625rem;
+            transition: all 0.2s;
+            font-size: 1rem;
         }
 
-        .social-icon:hover {
-            background: var(--accent-purple);
+        .social:hover {
+            background: var(--accent);
+            border-color: var(--accent);
             color: white;
-            border-color: var(--accent-purple);
         }
 
         .footer-contact h4 {
@@ -718,51 +612,34 @@
         }
 
         .footer-contact a {
-            color: var(--accent-purple);
+            color: var(--accent);
             text-decoration: none;
             font-size: 0.9375rem;
-            transition: color 0.3s;
         }
 
         .footer-contact a:hover {
-            color: var(--text-primary);
+            text-decoration: underline;
         }
 
-        .footer-disclaimer {
+        .disclaimer {
             padding: 1.75rem;
-            background: var(--bg-card);
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
             margin-bottom: 2rem;
         }
 
-        .footer-disclaimer p {
+        .disclaimer p {
             font-size: 0.8125rem;
-            line-height: 1.6;
             color: var(--text-secondary);
         }
 
-        .footer-bottom {
+        .copyright {
             text-align: center;
             padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .footer-bottom p {
+            border-top: 1px solid var(--border);
             color: var(--text-tertiary);
-            font-size: 0.8125rem;
-        }
-
-        /* Scroll animations */
-        .fade-up {
-            opacity: 0;
-            transform: translateY(25px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .fade-up.visible {
-            opacity: 1;
-            transform: translateY(0);
+            font-size: 0.875rem;
         }
     </style>
 </head>
@@ -775,127 +652,128 @@
     </nav>
 
     <section id="hero">
-        <div class="hero-content container">
-            <p class="hero-tagline">Guided Relief at Home</p>
-            <h1>Vertigo treatment,<br>guided by sound</h1>
-            <p style="font-size: clamp(1.0625rem, 2vw, 1.25rem); color: var(--text-secondary); max-width: 750px; margin: 0 auto;">VertiBand uses precision motion sensing and real-time audio to help you perform the Epley maneuver correctly at home, without a clinic visit.</p>
-            <a href="#solution" class="cta-primary">
-                <span>Discover VertiBand</span>
-                <span>→</span>
-            </a>
-            <div class="hero-visual">
-                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <h1>Guided relief from vertigo, at home</h1>
+                    <p>VertiBand uses precision motion sensing and real-time audio to help you perform the Epley maneuver correctly, without a clinic visit.</p>
+                    <a href="#features" class="cta">
+                        <span>Learn more</span>
+                        <span>→</span>
+                    </a>
+                </div>
+                <div class="hero-visual">
+                    <span class="product-placeholder">3D Product Render</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat">
+                    <div class="stat-value">2.4%</div>
+                    <div class="stat-label">Population affected</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">$150-300</div>
+                    <div class="stat-label">Per specialist visit</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">4-6 wks</div>
+                    <div class="stat-label">Average wait time</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">~50%</div>
+                    <div class="stat-label">Home treatment failure</div>
+                </div>
             </div>
         </div>
     </section>
 
     <section id="problem">
         <div class="container">
-            <h2 class="fade-up">15 million Americans suffer from BPPV</h2>
-            <div class="stats-display">
-                <div class="stat-item fade-up">
-                    <div class="stat-value">2.4%</div>
-                    <div class="stat-description">of the population affected</div>
-                </div>
-                <div class="stat-item fade-up">
-                    <div class="stat-value">$150-300</div>
-                    <div class="stat-description">per specialist visit</div>
-                </div>
-                <div class="stat-item fade-up">
-                    <div class="stat-value">4-6 wks</div>
-                    <div class="stat-description">wait times</div>
-                </div>
-                <div class="stat-item fade-up">
-                    <div class="stat-value">~50%</div>
-                    <div class="stat-description">home treatment failure rate</div>
-                </div>
-            </div>
-            <div class="problem-narrative fade-up">
-                <p>BPPV causes intense vertigo when calcium crystals shift in your inner ear. The Epley maneuver works, but only if you hit the right angles. Without guidance, most people fail. Incorrect attempts can make symptoms worse.</p>
+            <div class="section-header">
+                <h2>The challenge with BPPV</h2>
+                <p>BPPV causes intense vertigo when calcium crystals shift in your inner ear. The Epley maneuver works, but only if you hit the right angles. Without guidance, most people fail.</p>
             </div>
         </div>
     </section>
 
-    <section id="solution">
+    <section id="features">
         <div class="container">
-            <div class="solution-header fade-up">
-                <h2>Clinical-grade guidance.<br>Consumer-friendly device.</h2>
-                <p style="font-size: clamp(1.0625rem, 2vw, 1.25rem); color: var(--text-secondary); max-width: 750px; margin: 0 auto;">VertiBand tells you exactly when to move, how far to turn, and confirms when you're in the right position.</p>
+            <div class="section-header">
+                <h2>Clinical-grade guidance, consumer-friendly design</h2>
             </div>
-            <div class="features-showcase">
-                <div class="feature-item fade-up">
-                    <h3>Precision Sensing</h3>
+            <div class="features-grid">
+                <div class="feature">
+                    <h3>Precision sensing</h3>
                     <p>Medical-grade IMU tracks head orientation within ±2.8°</p>
                 </div>
-                <div class="feature-item fade-up">
-                    <h3>Audio Guidance</h3>
-                    <p>Hands-free voice instructions with no screens to watch during vertigo</p>
+                <div class="feature">
+                    <h3>Audio guidance</h3>
+                    <p>Hands-free voice instructions with no screens to watch</p>
                 </div>
-                <div class="feature-item fade-up">
-                    <h3>Real-Time Corrections</h3>
-                    <p>"Turn a little more to the right... perfect, hold this position"</p>
+                <div class="feature">
+                    <h3>Real-time corrections</h3>
+                    <p>Immediate feedback if you drift off target position</p>
                 </div>
-            </div>
-            <div class="product-showcase fade-up">
-                <span class="product-label">Product Image</span>
             </div>
         </div>
     </section>
 
     <section id="how-it-works">
         <div class="container">
-            <div class="process-header fade-up">
+            <div class="section-header">
                 <h2>Four steps to relief</h2>
             </div>
-            <div class="process-steps">
-                <div class="process-step fade-up">
-                    <div class="step-icon">1</div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
                     <h3>Calibrate</h3>
-                    <p>Put on the headband, establish your neutral position</p>
+                    <p>Put on the headband, establish neutral position</p>
                 </div>
-                <div class="process-step fade-up">
-                    <div class="step-icon">2</div>
+                <div class="step">
+                    <div class="step-number">2</div>
                     <h3>Follow</h3>
-                    <p>Audio guides you through each of the 5 Epley positions</p>
+                    <p>Audio guides you through 5 Epley positions</p>
                 </div>
-                <div class="process-step fade-up">
-                    <div class="step-icon">3</div>
+                <div class="step">
+                    <div class="step-number">3</div>
                     <h3>Correct</h3>
                     <p>Real-time feedback if you drift off target</p>
                 </div>
-                <div class="process-step fade-up">
-                    <div class="step-icon">4</div>
+                <div class="step">
+                    <div class="step-number">4</div>
                     <h3>Complete</h3>
                     <p>Session logged, vertigo addressed</p>
                 </div>
-            </div>
-            <div class="process-visual fade-up">
-                <span>Diagram</span>
             </div>
         </div>
     </section>
 
     <section id="validation">
         <div class="container">
-            <div class="validation-header fade-up">
-                <h2>Tested. Validated. Proven.</h2>
+            <div class="section-header">
+                <h2>Tested and validated</h2>
             </div>
-            <div class="validation-metrics">
-                <div class="metric-card fade-up">
+            <div class="metrics">
+                <div class="metric">
                     <div class="metric-value">±2.8°</div>
-                    <div class="metric-label">position accuracy</div>
+                    <div class="metric-label">Position accuracy</div>
                 </div>
-                <div class="metric-card fade-up">
+                <div class="metric">
                     <div class="metric-value">94%</div>
-                    <div class="metric-label">transition detection</div>
+                    <div class="metric-label">Transition detection</div>
                 </div>
-                <div class="metric-card fade-up">
+                <div class="metric">
                     <div class="metric-value">91%</div>
-                    <div class="metric-label">error correction in simulated trials</div>
+                    <div class="metric-label">Error correction rate</div>
                 </div>
             </div>
-            <div class="quote-block fade-up">
-                <p>"I never knew if I was doing it right before. Now I actually know when I'm in the right position."</p>
+            <div class="quote">
+                <p>"I never knew if I was doing it right before. Now I know when I'm in the right position."</p>
                 <div class="quote-author">Early tester</div>
             </div>
         </div>
@@ -903,11 +781,11 @@
 
     <section id="comparison">
         <div class="container">
-            <div class="comparison-header fade-up">
+            <div class="section-header">
                 <h2>How VertiBand compares</h2>
             </div>
-            <div class="comparison-container fade-up">
-                <table class="comparison-table">
+            <div class="table-wrapper">
+                <table>
                     <thead>
                         <tr>
                             <th>Feature</th>
@@ -927,31 +805,31 @@
                         </tr>
                         <tr>
                             <td>Real-time feedback</td>
-                            <td><span class="check-icon">✓</span></td>
-                            <td><span class="cross-icon">✗</span></td>
-                            <td><span class="cross-icon">✗</span></td>
-                            <td><span class="check-icon">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="cross">✗</span></td>
+                            <td><span class="cross">✗</span></td>
+                            <td><span class="check">✓</span></td>
                         </tr>
                         <tr>
                             <td>Hands-free</td>
-                            <td><span class="check-icon">✓</span></td>
-                            <td><span class="cross-icon">✗</span></td>
-                            <td><span class="cross-icon">✗</span></td>
-                            <td><span class="check-icon">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="cross">✗</span></td>
+                            <td><span class="cross">✗</span></td>
+                            <td><span class="check">✓</span></td>
                         </tr>
                         <tr>
                             <td>Home use</td>
-                            <td><span class="check-icon">✓</span></td>
-                            <td><span class="check-icon">✓</span></td>
-                            <td><span class="check-icon">✓</span></td>
-                            <td><span class="cross-icon">✗</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="cross">✗</span></td>
                         </tr>
                         <tr>
                             <td>Medical-grade accuracy</td>
-                            <td><span class="check-icon">✓</span></td>
-                            <td><span class="cross-icon">✗</span></td>
-                            <td><span class="cross-icon">✗</span></td>
-                            <td><span class="check-icon">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="cross">✗</span></td>
+                            <td><span class="cross">✗</span></td>
+                            <td><span class="check">✓</span></td>
                         </tr>
                     </tbody>
                 </table>
@@ -961,37 +839,37 @@
 
     <section id="team">
         <div class="container">
-            <div class="team-header fade-up">
+            <div class="section-header">
                 <h2>Built by people who understand the problem</h2>
             </div>
-            <div class="team-story fade-up">
-                <p>When Tanmay's mother was diagnosed with BPPV, he saw how broken the system was: expensive specialist visits, long drives, weeks-long wait times. When he brought the problem to Zavier, the answer was simple: forget the clinic, let's build something that works at home.</p>
+            <div class="team-intro">
+                <p>When Tanmay's mother was diagnosed with BPPV, he saw how broken the system was: expensive specialist visits, long drives, weeks-long wait times. When he brought the problem to Zavier, the answer was simple: build something that works at home.</p>
             </div>
-            <div class="team-members">
-                <div class="team-member fade-up">
+            <div class="team-grid">
+                <div class="member">
                     <div class="member-photo">Photo</div>
                     <div class="member-name">Tanmay Vasudeva</div>
-                    <div class="member-title">Co-Founder, Research & Business Lead</div>
+                    <div class="member-role">Co-Founder, Research & Business</div>
                     <div class="member-bio">
                         <ul>
                             <li>Texas Virtual Academy at Hallsville</li>
                             <li>Author, <em>What the Pain Left Behind</em></li>
-                            <li>Founder, CareForBrains (501(c)(3): 16 chapters, 850+ volunteers)</li>
+                            <li>Founder, CareForBrains (16 chapters, 850+ volunteers)</li>
                             <li>President, HOSA</li>
-                            <li>Co-author: "Meta-Analysis of the Epley Maneuver's Effect on DHI Scores" (Curieux Academic Journal)</li>
+                            <li>Co-author: Meta-Analysis of Epley Maneuver Effect on DHI Scores</li>
                         </ul>
                     </div>
                 </div>
-                <div class="team-member fade-up">
+                <div class="member">
                     <div class="member-photo">Photo</div>
                     <div class="member-name">Zavier Hayat</div>
-                    <div class="member-title">Co-Founder, Hardware Lead</div>
+                    <div class="member-role">Co-Founder, Hardware</div>
                     <div class="member-bio">
                         <ul>
                             <li>Clements High School, Sugar Land, TX</li>
                             <li>Director of STEM Exploration, CareForBrains</li>
                             <li>Eagle Scout</li>
-                            <li>Co-author: "Meta-Analysis of the Epley Maneuver's Effect on DHI Scores" (Curieux Academic Journal)</li>
+                            <li>Co-author: Meta-Analysis of Epley Maneuver Effect on DHI Scores</li>
                         </ul>
                     </div>
                 </div>
@@ -1005,10 +883,10 @@
                 <div class="footer-brand">
                     <h3>VertiBand</h3>
                     <p class="footer-tagline">Guided relief from vertigo, in the comfort of home</p>
-                    <div class="social-icons">
-                        <a href="#" class="social-icon" aria-label="Twitter">𝕏</a>
-                        <a href="#" class="social-icon" aria-label="LinkedIn">in</a>
-                        <a href="mailto:team@vertiband.com" class="social-icon" aria-label="Email">@</a>
+                    <div class="socials">
+                        <a href="#" class="social" aria-label="Twitter">𝕏</a>
+                        <a href="#" class="social" aria-label="LinkedIn">in</a>
+                        <a href="mailto:team@vertiband.com" class="social" aria-label="Email">@</a>
                     </div>
                 </div>
                 <div class="footer-contact">
@@ -1016,42 +894,13 @@
                     <a href="mailto:team@vertiband.com">team@vertiband.com</a>
                 </div>
             </div>
-            <div class="footer-disclaimer">
+            <div class="disclaimer">
                 <p><strong>Disclaimer:</strong> VertiBand is an assistive guidance tool and does not replace medical diagnosis or clinician instruction. Always consult with a healthcare professional for proper diagnosis and treatment of BPPV.</p>
             </div>
-            <div class="footer-bottom">
+            <div class="copyright">
                 <p>© 2025 VertiBand. All rights reserved.</p>
             </div>
         </div>
     </footer>
-
-    <script>
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-up').forEach(el => {
-            observer.observe(el);
-        });
-
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        });
-    </script>
 </body>
 </html>
