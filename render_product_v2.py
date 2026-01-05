@@ -129,7 +129,7 @@ scene.cycles.samples = 256  # Higher quality
 scene.cycles.use_denoising = False
 scene.render.resolution_x = 2400
 scene.render.resolution_y = 2400
-scene.render.film_transparent = True
+scene.render.film_transparent = False  # White background instead of transparent
 scene.render.filepath = "/home/user/verti/vertiband-render-v2.png"
 
 # Render
