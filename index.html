@@ -3,12 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VertiBand - Relief from vertigo</title>
+    <title>VertiBand – Precision Relief from Vertigo</title>
     <meta name="description" content="Medical-grade guidance for the Epley maneuver at home.">
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
     <style>
         * {
             margin: 0;
@@ -17,14 +22,19 @@
         }
 
         :root {
-            --bg: #FAFBFC;
+            --white: #FFFFFF;
+            --bg: #FAFAFA;
             --surface: #FFFFFF;
-            --text-primary: #1A1D29;
-            --text-secondary: #5C6171;
-            --text-tertiary: #8A8F9E;
-            --accent: #3B82F6;
-            --accent-light: #60A5FA;
-            --border: #E5E7EB;
+            --border: #E8E8E8;
+            --text-primary: #1A1A1A;
+            --text-secondary: #666666;
+            --text-tertiary: #999999;
+            --accent: #2E5266;
+            --accent-light: #4A7489;
+            --success: #0F766E;
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.08);
         }
 
         html {
@@ -33,60 +43,70 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg);
+            background: var(--white);
             color: var(--text-primary);
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
+        /* Typography */
         h1 {
-            font-size: clamp(2rem, 4.5vw, 3.5rem);
+            font-size: clamp(2.5rem, 5vw, 4rem);
             font-weight: 600;
             line-height: 1.1;
-            letter-spacing: -0.02em;
+            letter-spacing: -0.03em;
             color: var(--text-primary);
         }
 
         h2 {
-            font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+            font-size: clamp(2rem, 4vw, 3rem);
             font-weight: 600;
-            line-height: 1.2;
-            letter-spacing: -0.015em;
+            line-height: 1.15;
+            letter-spacing: -0.025em;
             color: var(--text-primary);
         }
 
         h3 {
-            font-size: clamp(1.125rem, 2vw, 1.375rem);
+            font-size: clamp(1.125rem, 2vw, 1.5rem);
             font-weight: 600;
             line-height: 1.3;
+            letter-spacing: -0.01em;
+            color: var(--text-primary);
+        }
+
+        h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: -0.005em;
             color: var(--text-primary);
         }
 
         p {
-            font-size: clamp(0.9375rem, 1.25vw, 1.0625rem);
+            font-size: clamp(1rem, 1.25vw, 1.125rem);
             line-height: 1.7;
             color: var(--text-secondary);
         }
 
         .container {
-            max-width: 1140px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 clamp(1.5rem, 4vw, 2.5rem);
+            padding: 0 clamp(1.5rem, 5vw, 3rem);
         }
 
         section {
-            padding: clamp(3.5rem, 8vh, 6rem) 0;
+            padding: clamp(5rem, 10vh, 8rem) 0;
         }
 
-        /* Nav */
+        /* Navigation */
         nav {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             z-index: 1000;
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border);
         }
 
@@ -94,8 +114,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-top: 1.125rem;
-            padding-bottom: 1.125rem;
+            padding-top: 1.5rem;
+            padding-bottom: 1.5rem;
         }
 
         .logo {
@@ -103,15 +123,18 @@
             font-weight: 600;
             color: var(--text-primary);
             text-decoration: none;
-            letter-spacing: -0.01em;
+            letter-spacing: -0.02em;
         }
 
         .nav-contact {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
             color: var(--text-secondary);
             text-decoration: none;
             font-size: 0.9375rem;
             font-weight: 500;
-            transition: color 0.2s;
+            transition: color 0.2s ease;
         }
 
         .nav-contact:hover {
@@ -120,119 +143,74 @@
 
         /* Hero */
         #hero {
-            min-height: 90vh;
+            min-height: 85vh;
             display: flex;
             align-items: center;
-            padding-top: 5rem;
+            padding-top: 6rem;
+            background: var(--white);
         }
 
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        @media (max-width: 968px) {
-            .hero-grid {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
+        .hero-content {
+            max-width: 720px;
+            margin: 0 auto;
+            text-align: center;
         }
 
         .hero-content h1 {
-            margin-bottom: 1.25rem;
+            margin-bottom: 2rem;
         }
 
         .hero-content p {
-            font-size: clamp(1.0625rem, 1.5vw, 1.1875rem);
-            margin-bottom: 2rem;
+            font-size: clamp(1.125rem, 1.5vw, 1.375rem);
+            margin-bottom: 3rem;
             color: var(--text-secondary);
-            max-width: 520px;
+            max-width: 640px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .cta {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            padding: 0.875rem 1.75rem;
-            font-size: 0.9375rem;
+            gap: 0.625rem;
+            padding: 1rem 2.25rem;
+            font-size: 1rem;
             font-weight: 500;
-            color: white;
+            color: var(--white);
             background: var(--accent);
             border: none;
-            border-radius: 8px;
+            border-radius: 6px;
             text-decoration: none;
-            transition: all 0.2s;
+            transition: all 0.2s ease;
+            box-shadow: var(--shadow-md);
         }
 
         .cta:hover {
             background: var(--accent-light);
             transform: translateY(-1px);
-        }
-
-        .hero-visual {
-            width: 100%;
-            aspect-ratio: 1;
-            background: linear-gradient(135deg, #F0F4FF 0%, #E8F0FE 100%);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-visual::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80%;
-            height: 80%;
-            background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
-            border-radius: 50%;
-        }
-
-        .product-placeholder {
-            position: relative;
-            z-index: 1;
-            font-size: 1rem;
-            font-weight: 500;
-            color: var(--text-tertiary);
-        }
-
-        .product-render {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            position: relative;
-            z-index: 1;
-            filter: drop-shadow(0 20px 60px rgba(0, 0, 0, 0.15));
+            box-shadow: var(--shadow-lg);
         }
 
         /* Stats */
         #stats {
             background: var(--bg);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
         }
 
         .stats-header {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
         }
 
         .stats-header h2 {
-            font-size: clamp(1.5rem, 3vw, 2rem);
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 0;
+            font-size: clamp(1.75rem, 3vw, 2.25rem);
         }
 
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 3rem;
+            gap: 2rem;
             max-width: 1000px;
             margin: 0 auto;
         }
@@ -240,114 +218,132 @@
         @media (max-width: 768px) {
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 2rem;
+                gap: 1.5rem;
             }
         }
 
         .stat {
             text-align: center;
-            padding: 2rem 1.5rem;
-            background: var(--surface);
+            padding: 2.5rem 1.5rem;
+            background: var(--white);
             border: 1px solid var(--border);
-            border-radius: 12px;
-            transition: all 0.2s;
+            border-radius: 8px;
+            transition: all 0.2s ease;
         }
 
         .stat:hover {
-            border-color: var(--accent);
+            box-shadow: var(--shadow-md);
             transform: translateY(-2px);
         }
 
         .stat-value {
-            font-size: clamp(2rem, 4vw, 2.5rem);
+            font-size: clamp(2rem, 4vw, 2.75rem);
             font-weight: 600;
             color: var(--text-primary);
-            margin-bottom: 0.625rem;
+            margin-bottom: 0.75rem;
             line-height: 1;
         }
 
         .stat-label {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-            font-weight: 600;
+            font-size: 0.8125rem;
+            color: var(--text-tertiary);
+            font-weight: 500;
             text-transform: uppercase;
-            letter-spacing: 0.08em;
+            letter-spacing: 0.06em;
+        }
+
+        /* Section Header */
+        .section-header {
+            text-align: center;
+            max-width: 720px;
+            margin: 0 auto 4rem;
+        }
+
+        .section-header h2 {
+            margin-bottom: 1.5rem;
+        }
+
+        .section-header p {
+            font-size: clamp(1.0625rem, 1.5vw, 1.25rem);
+            color: var(--text-secondary);
         }
 
         /* Problem */
         #problem {
-            background: var(--bg);
-        }
-
-        .section-header {
-            text-align: center;
-            max-width: 680px;
-            margin: 0 auto 3rem;
-        }
-
-        .section-header h2 {
-            margin-bottom: 1rem;
-        }
-
-        .section-header p {
-            font-size: clamp(1rem, 1.5vw, 1.125rem);
+            background: var(--white);
         }
 
         /* Features */
         #features {
-            background: var(--surface);
+            background: var(--bg);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
         }
 
         .features-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
-            margin-top: 3.5rem;
+            margin-top: 4rem;
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 968px) {
             .features-grid {
                 grid-template-columns: 1fr;
+                gap: 1.5rem;
             }
         }
 
         .feature {
-            padding: 2rem 1.5rem;
-            background: var(--bg);
+            padding: 3rem 2rem;
+            background: var(--white);
             border: 1px solid var(--border);
-            border-radius: 12px;
-            transition: all 0.2s;
+            border-radius: 8px;
+            transition: all 0.2s ease;
         }
 
         .feature:hover {
-            border-color: var(--accent);
+            box-shadow: var(--shadow-md);
             transform: translateY(-2px);
         }
 
-        .feature h3 {
-            margin-bottom: 0.75rem;
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg);
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
             color: var(--accent);
         }
 
+        .feature h3 {
+            margin-bottom: 1rem;
+        }
+
         .feature p {
-            font-size: 0.9375rem;
+            font-size: 1rem;
+            line-height: 1.6;
         }
 
         /* How It Works */
         #how-it-works {
-            background: var(--bg);
+            background: var(--white);
         }
 
         .steps {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-top: 3.5rem;
+            gap: 2.5rem;
+            margin-top: 4rem;
         }
 
         @media (max-width: 968px) {
             .steps {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
             }
         }
 
@@ -362,38 +358,40 @@
         }
 
         .step-number {
-            width: 64px;
-            height: 64px;
-            margin: 0 auto 1.25rem;
+            width: 72px;
+            height: 72px;
+            margin: 0 auto 1.5rem;
             background: var(--accent);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
+            font-size: 1.75rem;
             font-weight: 600;
-            color: white;
+            color: var(--white);
+            box-shadow: var(--shadow-md);
         }
 
         .step h3 {
-            margin-bottom: 0.625rem;
-            font-size: 1.125rem;
+            margin-bottom: 0.75rem;
         }
 
         .step p {
-            font-size: 0.875rem;
+            font-size: 0.9375rem;
         }
 
         /* Validation */
         #validation {
-            background: var(--surface);
+            background: var(--bg);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
         }
 
         .metrics {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
-            margin-top: 3.5rem;
+            margin-top: 4rem;
         }
 
         @media (max-width: 768px) {
@@ -404,69 +402,70 @@
 
         .metric {
             text-align: center;
-            padding: 2.5rem 2rem;
-            background: var(--bg);
+            padding: 3rem 2rem;
+            background: var(--white);
             border: 1px solid var(--border);
-            border-radius: 12px;
+            border-radius: 8px;
         }
 
         .metric-value {
-            font-size: clamp(2.25rem, 4vw, 2.75rem);
+            font-size: clamp(2.5rem, 4vw, 3rem);
             font-weight: 600;
             color: var(--accent);
-            margin-bottom: 0.75rem;
+            margin-bottom: 1rem;
             line-height: 1;
         }
 
         .metric-label {
-            font-size: 0.9375rem;
+            font-size: 1rem;
             color: var(--text-secondary);
         }
 
         .quote {
-            max-width: 680px;
-            margin: 3.5rem auto 0;
-            padding: 2.5rem;
-            background: var(--bg);
+            max-width: 720px;
+            margin: 4rem auto 0;
+            padding: 3rem;
+            background: var(--white);
             border-left: 3px solid var(--accent);
             border-radius: 8px;
+            box-shadow: var(--shadow-sm);
         }
 
         .quote p {
-            font-size: clamp(1.0625rem, 1.5vw, 1.1875rem);
+            font-size: clamp(1.125rem, 1.5vw, 1.375rem);
             font-style: italic;
             color: var(--text-primary);
-            margin-bottom: 0.75rem;
+            margin-bottom: 1rem;
         }
 
         .quote-author {
-            font-size: 0.9375rem;
+            font-size: 1rem;
             color: var(--text-tertiary);
+            font-style: normal;
         }
 
         /* Comparison */
         #comparison {
-            background: var(--bg);
+            background: var(--white);
         }
 
         .table-wrapper {
             overflow-x: auto;
-            margin-top: 3rem;
+            margin-top: 4rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            overflow: hidden;
+            background: var(--white);
         }
 
         th, td {
-            padding: 1.25rem 1rem;
+            padding: 1.5rem 1.25rem;
             text-align: left;
-            font-size: 0.9375rem;
+            font-size: 1rem;
         }
 
         th {
@@ -492,46 +491,46 @@
 
         th:nth-child(2), td:nth-child(2) {
             color: var(--accent);
-            font-weight: 500;
+            font-weight: 600;
         }
 
-        .check {
-            color: #10B981;
-            font-size: 1.125rem;
+        .icon-check {
+            color: var(--success);
         }
 
-        .cross {
-            color: #D1D5DB;
-            font-size: 1.125rem;
+        .icon-x {
+            color: var(--text-tertiary);
         }
 
         /* Why */
         #why {
-            background: var(--surface);
+            background: var(--bg);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
         }
 
         .why-content {
-            max-width: 880px;
-            margin: 3.5rem auto 0;
+            max-width: 920px;
+            margin: 4rem auto 0;
             display: grid;
             gap: 3rem;
         }
 
         .why-story, .why-mission {
-            padding: 2.5rem;
-            background: var(--bg);
+            padding: 3rem;
+            background: var(--white);
             border: 1px solid var(--border);
-            border-radius: 12px;
+            border-radius: 8px;
         }
 
         .why-story h3, .why-mission h3 {
             color: var(--accent);
-            margin-bottom: 1.25rem;
-            font-size: 1.375rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
         }
 
         .why-story p, .why-mission p {
-            margin-bottom: 1.25rem;
+            margin-bottom: 1.5rem;
         }
 
         .why-story p:last-child, .why-mission p:last-child {
@@ -540,19 +539,21 @@
 
         /* Team */
         #team {
-            background: var(--bg);
+            background: var(--white);
         }
 
         .team-intro {
-            max-width: 780px;
-            margin: 0 auto 3.5rem;
+            max-width: 820px;
+            margin: 0 auto 4rem;
             text-align: center;
         }
 
         .team-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 2.5rem;
+            gap: 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
         }
 
         @media (max-width: 768px) {
@@ -562,18 +563,23 @@
         }
 
         .member {
-            background: var(--bg);
+            background: var(--white);
             border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 2rem;
+            border-radius: 8px;
+            padding: 2.5rem;
+            transition: all 0.2s ease;
+        }
+
+        .member:hover {
+            box-shadow: var(--shadow-md);
         }
 
         .member-photo {
             width: 100%;
-            height: 320px;
-            background: #f5f5f5;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
+            height: 360px;
+            background: var(--bg);
+            border-radius: 6px;
+            margin-bottom: 2rem;
             overflow: hidden;
         }
 
@@ -584,16 +590,16 @@
         }
 
         .member-name {
-            font-size: 1.25rem;
+            font-size: 1.375rem;
             font-weight: 600;
-            margin-bottom: 0.375rem;
+            margin-bottom: 0.5rem;
         }
 
         .member-role {
             color: var(--accent);
-            font-size: 0.9375rem;
+            font-size: 1rem;
             font-weight: 500;
-            margin-bottom: 1rem;
+            margin-bottom: 1.25rem;
         }
 
         .member-linkedin {
@@ -602,10 +608,10 @@
             gap: 0.5rem;
             color: var(--accent);
             text-decoration: none;
-            font-size: 0.875rem;
+            font-size: 0.9375rem;
             font-weight: 500;
-            margin-bottom: 1.5rem;
-            transition: color 0.2s;
+            margin-bottom: 2rem;
+            transition: color 0.2s ease;
         }
 
         .member-linkedin:hover {
@@ -617,61 +623,66 @@
         }
 
         .member-bio li {
-            padding: 0.375rem 0;
-            padding-left: 1.25rem;
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
             position: relative;
-            font-size: 0.875rem;
+            font-size: 0.9375rem;
             color: var(--text-secondary);
         }
 
         .member-bio li::before {
-            content: '•';
+            content: '';
             position: absolute;
             left: 0;
-            color: var(--accent);
+            top: 1rem;
+            width: 4px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 50%;
         }
 
         /* Footer */
         footer {
-            background: var(--surface);
+            background: var(--bg);
             border-top: 1px solid var(--border);
-            padding: 3rem 0 2rem;
+            padding: 4rem 0 2.5rem;
         }
 
         .footer-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 3rem;
-            margin-bottom: 2.5rem;
+            gap: 4rem;
+            margin-bottom: 3rem;
         }
 
         @media (max-width: 580px) {
             .footer-grid {
                 grid-template-columns: 1fr;
+                gap: 2.5rem;
             }
         }
 
         .footer-brand h3 {
-            font-size: 1.25rem;
+            font-size: 1.375rem;
             font-weight: 600;
-            margin-bottom: 0.625rem;
+            margin-bottom: 0.75rem;
         }
 
         .footer-tagline {
             color: var(--text-secondary);
-            margin-bottom: 1rem;
-            font-size: 0.9375rem;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
         }
 
         .socials {
             display: flex;
-            gap: 0.625rem;
+            gap: 0.75rem;
         }
 
         .social {
-            width: 36px;
-            height: 36px;
-            background: var(--bg);
+            width: 40px;
+            height: 40px;
+            background: var(--white);
             border: 1px solid var(--border);
             border-radius: 50%;
             display: flex;
@@ -679,51 +690,52 @@
             justify-content: center;
             color: var(--text-secondary);
             text-decoration: none;
-            transition: all 0.2s;
-            font-size: 1rem;
+            transition: all 0.2s ease;
         }
 
         .social:hover {
             background: var(--accent);
             border-color: var(--accent);
-            color: white;
+            color: var(--white);
         }
 
         .footer-contact h4 {
-            font-size: 0.9375rem;
-            margin-bottom: 0.625rem;
+            font-size: 1rem;
+            margin-bottom: 0.75rem;
             font-weight: 600;
         }
 
         .footer-contact a {
             color: var(--accent);
             text-decoration: none;
-            font-size: 0.9375rem;
+            font-size: 1rem;
+            transition: color 0.2s ease;
         }
 
         .footer-contact a:hover {
-            text-decoration: underline;
+            color: var(--accent-light);
         }
 
         .disclaimer {
-            padding: 1.75rem;
-            background: var(--bg);
+            padding: 2rem;
+            background: var(--white);
             border: 1px solid var(--border);
             border-radius: 8px;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
         }
 
         .disclaimer p {
-            font-size: 0.8125rem;
+            font-size: 0.875rem;
             color: var(--text-secondary);
+            line-height: 1.6;
         }
 
         .copyright {
             text-align: center;
-            padding-top: 2rem;
+            padding-top: 2.5rem;
             border-top: 1px solid var(--border);
             color: var(--text-tertiary);
-            font-size: 0.875rem;
+            font-size: 0.9375rem;
         }
     </style>
 </head>
@@ -731,24 +743,22 @@
     <nav>
         <div class="container">
             <a href="#hero" class="logo">VertiBand</a>
-            <a href="mailto:team@vertiband.com" class="nav-contact">Contact</a>
+            <a href="mailto:team@vertiband.com" class="nav-contact">
+                <i data-lucide="mail" style="width: 16px; height: 16px;"></i>
+                <span>Contact</span>
+            </a>
         </div>
     </nav>
 
     <section id="hero">
         <div class="container">
-            <div class="hero-grid">
-                <div class="hero-content">
-                    <h1>Guided relief from vertigo, at home</h1>
-                    <p>VertiBand uses precision motion sensing and real-time audio to help you perform the Epley maneuver correctly, without a clinic visit.</p>
-                    <a href="#features" class="cta">
-                        <span>Learn more</span>
-                        <span>→</span>
-                    </a>
-                </div>
-                <div class="hero-visual">
-                    <img src="vertiband-render-v2.png" alt="VertiBand - Professional Medical Device" class="product-render">
-                </div>
+            <div class="hero-content">
+                <h1>Precision relief from vertigo, at home</h1>
+                <p>VertiBand uses medical-grade motion sensing and real-time audio guidance to help you perform the Epley maneuver correctly, without a clinic visit.</p>
+                <a href="#features" class="cta">
+                    <span>Learn more</span>
+                    <i data-lucide="arrow-right" style="width: 18px; height: 18px;"></i>
+                </a>
             </div>
         </div>
     </section>
@@ -795,14 +805,23 @@
             </div>
             <div class="features-grid">
                 <div class="feature">
+                    <div class="feature-icon">
+                        <i data-lucide="compass" style="width: 24px; height: 24px;"></i>
+                    </div>
                     <h3>Precision sensing</h3>
                     <p>Medical-grade IMU tracks head orientation within ±2.8°</p>
                 </div>
                 <div class="feature">
+                    <div class="feature-icon">
+                        <i data-lucide="headphones" style="width: 24px; height: 24px;"></i>
+                    </div>
                     <h3>Audio guidance</h3>
                     <p>Hands-free voice instructions with no screens to watch</p>
                 </div>
                 <div class="feature">
+                    <div class="feature-icon">
+                        <i data-lucide="activity" style="width: 24px; height: 24px;"></i>
+                    </div>
                     <h3>Real-time corrections</h3>
                     <p>Immediate feedback if you drift off target position</p>
                 </div>
@@ -892,31 +911,31 @@
                         </tr>
                         <tr>
                             <td>Real-time feedback</td>
-                            <td><span class="check">✓</span></td>
-                            <td><span class="cross">✗</span></td>
-                            <td><span class="cross">✗</span></td>
-                            <td><span class="check">✓</span></td>
+                            <td><i data-lucide="check" class="icon-check" style="width: 20px; height: 20px;"></i></td>
+                            <td><i data-lucide="x" class="icon-x" style="width: 20px; height: 20px;"></i></td>
+                            <td><i data-lucide="x" class="icon-x" style="width: 20px; height: 20px;"></i></td>
+                            <td><i data-lucide="check" class="icon-check" style="width: 20px; height: 20px;"></i></td>
                         </tr>
                         <tr>
                             <td>Hands-free</td>
-                            <td><span class="check">✓</span></td>
-                            <td><span class="cross">✗</span></td>
-                            <td><span class="cross">✗</span></td>
-                            <td><span class="check">✓</span></td>
+                            <td><i data-lucide="check" class="icon-check" style="width: 20px; height: 20px;"></i></td>
+                            <td><i data-lucide="x" class="icon-x" style="width: 20px; height: 20px;"></i></td>
+                            <td><i data-lucide="x" class="icon-x" style="width: 20px; height: 20px;"></i></td>
+                            <td><i data-lucide="check" class="icon-check" style="width: 20px; height: 20px;"></i></td>
                         </tr>
                         <tr>
                             <td>Home use</td>
-                            <td><span class="check">✓</span></td>
-                            <td><span class="check">✓</span></td>
-                            <td><span class="check">✓</span></td>
-                            <td><span class="cross">✗</span></td>
+                            <td><i data-lucide="check" class="icon-check" style="width: 20px; height: 20px;"></i></td>
+                            <td><i data-lucide="check" class="icon-check" style="width: 20px; height: 20px;"></i></td>
+                            <td><i data-lucide="check" class="icon-check" style="width: 20px; height: 20px;"></i></td>
+                            <td><i data-lucide="x" class="icon-x" style="width: 20px; height: 20px;"></i></td>
                         </tr>
                         <tr>
                             <td>Medical-grade accuracy</td>
-                            <td><span class="check">✓</span></td>
-                            <td><span class="cross">✗</span></td>
-                            <td><span class="cross">✗</span></td>
-                            <td><span class="check">✓</span></td>
+                            <td><i data-lucide="check" class="icon-check" style="width: 20px; height: 20px;"></i></td>
+                            <td><i data-lucide="x" class="icon-x" style="width: 20px; height: 20px;"></i></td>
+                            <td><i data-lucide="x" class="icon-x" style="width: 20px; height: 20px;"></i></td>
+                            <td><i data-lucide="check" class="icon-check" style="width: 20px; height: 20px;"></i></td>
                         </tr>
                     </tbody>
                 </table>
@@ -962,8 +981,8 @@
                     <div class="member-name">Tanmay Vasudeva</div>
                     <div class="member-role">Co-Founder, Research & Business</div>
                     <a href="https://www.linkedin.com/in/tanmayvasudeva1" target="_blank" rel="noopener" class="member-linkedin">
+                        <i data-lucide="linkedin" style="width: 16px; height: 16px;"></i>
                         <span>LinkedIn</span>
-                        <span>→</span>
                     </a>
                     <div class="member-bio">
                         <ul>
@@ -982,8 +1001,8 @@
                     <div class="member-name">Zavier Hayat</div>
                     <div class="member-role">Co-Founder, Hardware</div>
                     <a href="https://www.linkedin.com/in/zavier-hayat-30898636b" target="_blank" rel="noopener" class="member-linkedin">
+                        <i data-lucide="linkedin" style="width: 16px; height: 16px;"></i>
                         <span>LinkedIn</span>
-                        <span>→</span>
                     </a>
                     <div class="member-bio">
                         <ul>
@@ -1003,11 +1022,17 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <h3>VertiBand</h3>
-                    <p class="footer-tagline">Guided relief from vertigo, in the comfort of home</p>
+                    <p class="footer-tagline">Precision relief from vertigo, in the comfort of home</p>
                     <div class="socials">
-                        <a href="#" class="social" aria-label="Twitter">𝕏</a>
-                        <a href="#" class="social" aria-label="LinkedIn">in</a>
-                        <a href="mailto:team@vertiband.com" class="social" aria-label="Email">@</a>
+                        <a href="#" class="social" aria-label="Twitter">
+                            <i data-lucide="twitter" style="width: 18px; height: 18px;"></i>
+                        </a>
+                        <a href="#" class="social" aria-label="LinkedIn">
+                            <i data-lucide="linkedin" style="width: 18px; height: 18px;"></i>
+                        </a>
+                        <a href="mailto:team@vertiband.com" class="social" aria-label="Email">
+                            <i data-lucide="mail" style="width: 18px; height: 18px;"></i>
+                        </a>
                     </div>
                 </div>
                 <div class="footer-contact">
@@ -1023,5 +1048,10 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
 </body>
 </html>
