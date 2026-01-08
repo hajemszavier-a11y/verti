@@ -737,6 +737,265 @@
             color: var(--text-tertiary);
             font-size: 0.9375rem;
         }
+
+        /* Market */
+        #market {
+            background: var(--white);
+        }
+
+        .market-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 968px) {
+            .market-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        .market-card {
+            padding: 3rem 2rem;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .market-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .market-icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--white);
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+
+        .market-card h3 {
+            margin-bottom: 1rem;
+        }
+
+        .market-card p {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* Innovation */
+        #innovation {
+            background: var(--bg);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .innovation-content {
+            margin-top: 4rem;
+            display: grid;
+            gap: 3rem;
+        }
+
+        .tech-overview {
+            padding: 3rem;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+        }
+
+        .tech-overview h3 {
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+
+        .tech-overview p {
+            margin-bottom: 1.25rem;
+        }
+
+        .tech-overview p:last-child {
+            margin-bottom: 0;
+        }
+
+        .tech-specs {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        @media (max-width: 968px) {
+            .tech-specs {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .spec-group {
+            padding: 2.5rem 2rem;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+        }
+
+        .spec-group h4 {
+            margin-bottom: 1.25rem;
+            color: var(--accent);
+            font-size: 1.125rem;
+        }
+
+        .spec-group ul {
+            list-style: none;
+        }
+
+        .spec-group li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 0.9375rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .spec-group li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 1rem;
+            width: 4px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        /* Impact */
+        #impact {
+            background: var(--white);
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 968px) {
+            .impact-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 580px) {
+            .impact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .impact-card {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .impact-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .impact-number {
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            line-height: 1;
+        }
+
+        .impact-label {
+            font-size: 0.9375rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* Roadmap */
+        #roadmap {
+            background: var(--bg);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .roadmap-content {
+            margin-top: 4rem;
+            display: grid;
+            gap: 2.5rem;
+        }
+
+        .roadmap-phase {
+            padding: 3rem;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+        }
+
+        .phase-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--bg);
+            border-radius: 6px;
+            margin-bottom: 1.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .phase-status.complete {
+            color: var(--success);
+        }
+
+        .phase-status.in-progress {
+            color: var(--accent);
+        }
+
+        .phase-status.upcoming {
+            color: var(--text-tertiary);
+        }
+
+        .roadmap-phase h3 {
+            margin-bottom: 1.5rem;
+        }
+
+        .roadmap-phase ul {
+            list-style: none;
+        }
+
+        .roadmap-phase li {
+            padding: 0.625rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .roadmap-phase li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 1.125rem;
+            width: 4px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
     </style>
 </head>
 <body>
@@ -881,6 +1140,156 @@
             <div class="quote">
                 <p>"I never knew if I was doing it right before. Now I know when I'm in the right position."</p>
                 <div class="quote-author">Early tester</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="market">
+        <div class="container">
+            <div class="section-header">
+                <h2>Market opportunity</h2>
+                <p>VertiBand addresses a $5M+ annual market, serving 2.4 million newly diagnosed BPPV patients each year in the United States alone.</p>
+            </div>
+            <div class="market-grid">
+                <div class="market-card">
+                    <div class="market-icon">
+                        <i data-lucide="users" style="width: 24px; height: 24px;"></i>
+                    </div>
+                    <h3>Target customers</h3>
+                    <p>Adults aged 50-70 with recurring BPPV episodes who face barriers to accessing vestibular therapy—whether geographic, financial, or time constraints. Secondary customers include vestibular PTs and ENT practices.</p>
+                </div>
+                <div class="market-card">
+                    <div class="market-icon">
+                        <i data-lucide="trending-up" style="width: 24px; height: 24px;"></i>
+                    </div>
+                    <h3>Business model</h3>
+                    <p>Direct device sales at $219 per unit with 49.8% gross margin ($109/unit). Unit cost: $110 (components, assembly, packaging). Revenue expansion through companion app subscriptions and clinical bulk sales.</p>
+                </div>
+                <div class="market-card">
+                    <div class="market-icon">
+                        <i data-lucide="target" style="width: 24px; height: 24px;"></i>
+                    </div>
+                    <h3>Go-to-market strategy</h3>
+                    <p>Phase 1: Clinical partnerships with vestibular PTs for pilot validation. Phase 2: Direct-to-consumer via website and digital marketing. Phase 3: Amazon marketplace, ENT clinics, and telehealth platforms.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="innovation">
+        <div class="container">
+            <div class="section-header">
+                <h2>Technical innovation</h2>
+            </div>
+            <div class="innovation-content">
+                <div class="tech-overview">
+                    <h3>How it works</h3>
+                    <p>VertiBand combines a GY-521 MPU-6050 IMU (3-axis accelerometer and gyroscope) with a Raspberry Pi 4 computer to deliver real-time audio feedback through an integrated speaker system. The device calibrates to the user's default head position, then continuously monitors orientation against clinically required angles for each stage of the Epley maneuver.</p>
+                    <p>When head orientation deviates more than 10° from the target, VertiBand provides corrective audio prompts: "Turn your head more to the right... good, hold this position for 10 seconds." This closed-loop guidance algorithm ensures proper positioning before advancing to the next stage.</p>
+                </div>
+                <div class="tech-specs">
+                    <div class="spec-group">
+                        <h4>Proprietary technology</h4>
+                        <ul>
+                            <li>Threshold-based stage detection system</li>
+                            <li>Sensor fusion algorithm optimized for vestibular maneuver verification</li>
+                            <li>Corrective prompt generation logic</li>
+                            <li>Real-time position verification with adaptive audio feedback</li>
+                        </ul>
+                    </div>
+                    <div class="spec-group">
+                        <h4>Hardware specifications</h4>
+                        <ul>
+                            <li>Weight: <85 grams for extended 60-minute use</li>
+                            <li>Position accuracy: ±2.8° mean error</li>
+                            <li>Transition detection: 94% success rate</li>
+                            <li>Error correction: 91% within 3 seconds</li>
+                        </ul>
+                    </div>
+                    <div class="spec-group">
+                        <h4>Intellectual property</h4>
+                        <ul>
+                            <li>Patent pending: Real-time position verification system</li>
+                            <li>Trade secret: Sensor fusion algorithm</li>
+                            <li>Competitive defense through clinical validation data</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="impact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Measurable impact</h2>
+            </div>
+            <div class="impact-grid">
+                <div class="impact-card">
+                    <div class="impact-number">15M</div>
+                    <div class="impact-label">Americans currently living with BPPV</div>
+                </div>
+                <div class="impact-card">
+                    <div class="impact-number">$2B</div>
+                    <div class="impact-label">Potential annual savings in specialist visit costs</div>
+                </div>
+                <div class="impact-card">
+                    <div class="impact-number">50%</div>
+                    <div class="impact-label">Reduction in at-home treatment failure rates</div>
+                </div>
+                <div class="impact-card">
+                    <div class="impact-number">4-6 weeks</div>
+                    <div class="impact-label">Wait time eliminated for effective treatment</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="roadmap">
+        <div class="container">
+            <div class="section-header">
+                <h2>Development roadmap</h2>
+            </div>
+            <div class="roadmap-content">
+                <div class="roadmap-phase">
+                    <div class="phase-status complete">
+                        <i data-lucide="check-circle" style="width: 20px; height: 20px;"></i>
+                        <span>Complete</span>
+                    </div>
+                    <h3>Prototype validation</h3>
+                    <ul>
+                        <li>Position accuracy: ±2.8° verified across 50 test measurements</li>
+                        <li>Algorithm validation: 94% transition detection rate</li>
+                        <li>User testing with BPPV patients showing improved confidence</li>
+                        <li>Meta-analysis published on Epley maneuver effectiveness</li>
+                    </ul>
+                </div>
+                <div class="roadmap-phase">
+                    <div class="phase-status in-progress">
+                        <i data-lucide="loader" style="width: 20px; height: 20px;"></i>
+                        <span>In Progress</span>
+                    </div>
+                    <h3>Clinical pilots & refinement</h3>
+                    <ul>
+                        <li>30% miniaturization of electronics module</li>
+                        <li>50-unit production run for clinical partnerships</li>
+                        <li>Mobile app development for usage tracking and analytics</li>
+                        <li>Patent filing for position verification system</li>
+                    </ul>
+                </div>
+                <div class="roadmap-phase">
+                    <div class="phase-status upcoming">
+                        <i data-lucide="circle" style="width: 20px; height: 20px;"></i>
+                        <span>Next</span>
+                    </div>
+                    <h3>Regulatory & commercial launch</h3>
+                    <ul>
+                        <li>FDA Wellness Device classification</li>
+                        <li>Clinical validation study with 100+ patients</li>
+                        <li>Direct-to-consumer website launch</li>
+                        <li>Distribution partnerships with ENT clinics and telehealth platforms</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>
