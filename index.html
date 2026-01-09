@@ -694,6 +694,147 @@
             line-height: 1.7;
         }
 
+        /* Timeline */
+        .timeline-section {
+            padding: clamp(80px, 12vh, 140px) 0;
+            background: var(--gray-900);
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--accent) 0%, rgba(77, 101, 255, 0.2) 100%);
+        }
+
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 20px;
+            }
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 48px;
+            position: relative;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-item:nth-child(odd) {
+            flex-direction: row-reverse;
+        }
+
+        @media (max-width: 768px) {
+            .timeline-item,
+            .timeline-item:nth-child(odd) {
+                flex-direction: row;
+                padding-left: 50px;
+            }
+        }
+
+        .timeline-content {
+            width: calc(50% - 40px);
+            background: linear-gradient(145deg, var(--gray-800) 0%, var(--black) 100%);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.3s;
+        }
+
+        .timeline-content:hover {
+            border-color: rgba(77, 101, 255, 0.3);
+            transform: translateY(-4px);
+        }
+
+        @media (max-width: 768px) {
+            .timeline-content {
+                width: 100%;
+            }
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 16px;
+            height: 16px;
+            background: var(--accent);
+            border-radius: 50%;
+            border: 3px solid var(--gray-900);
+            z-index: 1;
+        }
+
+        @media (max-width: 768px) {
+            .timeline-dot {
+                left: 20px;
+            }
+        }
+
+        .timeline-date {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+
+        .timeline-content h4 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 8px;
+        }
+
+        .timeline-content p {
+            font-size: 0.9375rem;
+            color: var(--gray-400);
+            line-height: 1.6;
+        }
+
+        .timeline-now {
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .timeline-now-label {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 24px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .timeline-now-image {
+            max-width: 600px;
+            margin: 0 auto;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 2px solid rgba(77, 101, 255, 0.3);
+            box-shadow: 0 40px 80px var(--accent-glow);
+        }
+
+        .timeline-now-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
         /* Product Gallery */
         .product-gallery {
             display: grid;
@@ -1455,6 +1596,27 @@
                     <h3>Use it at home</h3>
                     <p>No $300 specialist visits. No 6 week waits. Treat vertigo episodes the moment they happen, from your own bedroom.</p>
                 </div>
+                <div class="why-card">
+                    <div class="why-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                    </div>
+                    <h3>Free app access</h3>
+                    <p>Full companion app included with your device. Step-by-step guidance, session tracking, and treatment history.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    </div>
+                    <h3>Lifetime updates</h3>
+                    <p>Software improvements, new features, and calibration updates pushed automatically. No extra cost, ever.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <h3>10-year warranty</h3>
+                    <p>Built to last. No subscriptions, no hidden fees. One purchase, decade of coverage. $219 and you're set.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -1699,6 +1861,80 @@
         </div>
     </section>
 
+    <section class="timeline-section" id="journey">
+        <div class="container">
+            <div class="section-header center">
+                <div class="section-label">Our Journey</div>
+                <h2>From idea to reality</h2>
+                <p>8 months of research, development, and iteration.</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">May 2025</div>
+                        <h4>The idea</h4>
+                        <p>Tanmay watches his mother struggle with vertigo. Weeks of waiting for a specialist. There had to be a better way.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">June 2025</div>
+                        <h4>Research begins</h4>
+                        <p>Deep dive into BPPV, vestibular therapy, and the Epley maneuver. Understanding the problem before building the solution.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">July 2025</div>
+                        <h4>Meta-analysis published</h4>
+                        <p>Co-authored research on Epley maneuver efficacy. Validated the science behind our approach with real clinical data.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">September 2025</div>
+                        <h4>Hardware selection</h4>
+                        <p>Raspberry Pi 4 + GY-521 MPU-6050 IMU. 100Hz sampling rate. The brain and sensors of VertiBand come together.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">November 2025</div>
+                        <h4>Enclosure designed</h4>
+                        <p>3D-printed housing for electronics. Ergonomic headband design. Form meets function.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">December 2025</div>
+                        <h4>Assembly complete</h4>
+                        <p>All parts fitted. Electronics integrated. First functional prototype assembled and ready for testing.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Dec 2025 - Jan 2026</div>
+                        <h4>Software development</h4>
+                        <p>Sensor fusion algorithms. Audio feedback system. Companion app. Turning hardware into a complete treatment system.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="timeline-now">
+                <div class="timeline-now-label">Now</div>
+                <div class="timeline-now-image">
+                    <img src="headband-hero.png" alt="VertiBand Today">
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="cta-section">
         <div class="container">
             <h2>Precision changes outcomes</h2>
@@ -1929,6 +2165,32 @@
                 delay: i * 0.15,
                 ease: "power2.out"
             });
+        });
+
+        // Timeline animation
+        gsap.utils.toArray('.timeline-item').forEach((el, i) => {
+            gsap.from(el, {
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top 85%",
+                },
+                opacity: 0,
+                y: 40,
+                duration: 0.6,
+                delay: i * 0.1,
+                ease: "power2.out"
+            });
+        });
+
+        gsap.from('.timeline-now', {
+            scrollTrigger: {
+                trigger: '.timeline-now',
+                start: "top 85%",
+            },
+            opacity: 0,
+            scale: 0.95,
+            duration: 0.8,
+            ease: "power2.out"
         });
 
         // Product gallery animation
